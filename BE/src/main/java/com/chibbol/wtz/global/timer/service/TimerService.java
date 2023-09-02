@@ -128,10 +128,9 @@ public class TimerService {
         }
 
         // 낮시간에만 시간을 줄일 수 있음
-        // TODO : 시연을 위한 주석
-//        if(!timer.getTimerType().equals("DAY")) {
-//            return;
-//        }
+        if(!timer.getTimerType().equals("DAY")) {
+            return;
+        }
 
         // 죽은 사람이 요청을 보냈을 때
         if(!roomUserJobRedisRepository.findByGameCodeAndUserSeq(gameCode, userSeq).isAlive()) {
@@ -302,7 +301,7 @@ public class TimerService {
             int randomIndex = random.nextInt(aliveRoomUsers.size());
             RoomUserJob randomUser = aliveRoomUsers.get(randomIndex);
 
-            int startSecond = 30; // 기본 값
+            int startSecond = 40; // 기본 값
 
             logBlackOutInfo(gameCode, randomUser.getUserSeq(), startSecond);
 
